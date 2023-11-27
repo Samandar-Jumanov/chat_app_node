@@ -16,13 +16,13 @@ exports.listen= function (server) {
         guestNumber = helperFunctions.assignGuestName(socket , guestNumber , nickNames , namesUsed);
         helperFunctions.joinRoom(socket , `Lobby` , currentRoom , nickNames)
         helperFunctions.handleMessageBroadcasting(socket , nickNames);
-        helperFunctions.handleNameChangeAttempts(socket , nickNames , namesUsed);
-        helperFunctions.handleRoomJoining(socket);
+        helperFunctions.handleNameChangeAttempts(socket , nickNames , namesUsed , currentRoom);
+        helperFunctions.handleRoomJoining(socket , namesUsed , nickNames);
         
         socket.on('rooms', () => {
             socket.emit('rooms', io.sockets.adapter.rooms);
         });
-        helperFunctions.handleClinetDisconnect(socket , nickNames , namesUsed);
+        helperFunctions.handleClientDisconnect(socket , nickNames , namesUsed);
     });
 
 }
