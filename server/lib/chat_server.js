@@ -18,7 +18,6 @@ exports.listen= function (server) {
         helperFunctions.handleMessageBroadcasting(socket , nickNames);
         helperFunctions.handleNameChangeAttempts(socket , nickNames , namesUsed , currentRoom);
         helperFunctions.handleRoomJoining(socket , namesUsed , nickNames);
-        
         socket.on('rooms', () => {
             socket.emit('rooms', io.sockets.adapter.rooms);
         });
